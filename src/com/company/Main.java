@@ -10,6 +10,7 @@ public class Main {
         homework_4();
 
         homework_6();
+        System.out.println(homework_8(4, 1));
 
     }
 
@@ -113,8 +114,30 @@ public class Main {
             left++;
         }
 
-        for (int[] a: A)
+        for (int[] a : A)
             System.out.println(Arrays.toString(a));
 
+    }
+
+    static boolean homework_8(int start, int end) {
+        boolean[][] connectivity_array = {
+                {true, true, true, false, false},
+                {false, true, false, false, false},
+                {false, false, true, false, true},
+                {true, false, false, true, false},
+                {false, false, false, false, true}
+        };
+
+        if (start == end)
+            return true;
+        else {
+            for (int i = 0; i < connectivity_array.length; i++) {
+                if (connectivity_array[start][i] && i != start) {
+                    if (homework_8(i, end))
+                        return true;
+                }
+            }
+            return false;
+        }
     }
 }
